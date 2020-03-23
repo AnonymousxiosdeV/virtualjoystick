@@ -3,8 +3,8 @@
 #include <ESP8266WiFi.h>
 
 //Set Wifi ssid and password
-char ssid[] = "<SSID>";
-char pass[] = "<password>";
+char ssid[] = "Nacho WiFi";
+char pass[] = "turborx7";
 
 //Define the pins
 int STBY = 12; //standby
@@ -37,8 +37,8 @@ void handleJSData(){
   //adjust to speed of each each motor depending on the x-axis
   //it slows down one motor and speeds up the other proportionately 
   //based on the amount of turning
-  aSpeed = constrain(aSpeed + x/2, 0, 1023);
-  bSpeed = constrain(bSpeed - x/2, 0, 1023);
+  aSpeed = constrain(aSpeed + x/2, 0, 180);
+  bSpeed = constrain(bSpeed - x/2, 0, 180);
 
   //use the speed and direction values to turn the motors
   //if either motor is going in reverse from what is expected,
