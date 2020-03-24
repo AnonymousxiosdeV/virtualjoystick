@@ -8,32 +8,20 @@ char pass[] = "turborx7";
 
 //Define the pins
 int STBY = 12; //standby
-//Motor A
-int PWMA = 5; //Speed control
-int AIN1 = 14; //Direction
-int AIN2 = 16; //Direction
-//Motor B
-int PWMB = 4; //Speed control
-int BIN1 = 15; //Direction
-int BIN2 = 13; //Direction
+
+Servo servoX,servoY
 
 ESP8266WebServer server (80);
 
 //This function takes the parameters passed in the URL(the x and y coordinates of the joystick)
 //and sets the motor speed based on those parameters. 
 void handleJSData(){
-  boolean yDir;
-  int x = server.arg(0).toInt() * 10;
-  int y = server.arg(1).toInt() * 10;
-  int aSpeed = abs(y);
-  int bSpeed = abs(y);
+  int x = server.arg(0).toInt() * 2;
+  int y = server.arg(1).toInt() * 2;
+  int pitch = abs(x);
+  int yaw = abs(y);
   //set the direction based on y being negative or positive
-  if ( y < 0 ){
-    yDir = 0; 
-  }
-  else { 
-    yDir = 1;
-  }  
+  
   //adjust to speed of each each motor depending on the x-axis
   //it slows down one motor and speeds up the other proportionately 
   //based on the amount of turning
